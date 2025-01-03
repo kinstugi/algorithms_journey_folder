@@ -23,7 +23,7 @@ using f32 = float;
 using f64 = double;
 using str = string;
 template <typename T> using vec = vector<T>;
-template <typename T> using vvec = vec<vec<T>>;
+template <typename T> using vvec = vec<vec<T> >;
 #define rep(i, n) for (i32 i = 0; i < (n); i++)
 #define rrep(i, n) for (i32 i = (n) - 1; i >= 0; i--)
 #define each(e, v) for (auto& e : v)
@@ -44,5 +44,17 @@ template <typename T> inline void reverse(vector<T>& v){reverse(all(v));}
 
 int main ()
 {
-  return 0;
+    //freopen("sample.in", "r", stdin);
+    int t;
+    cin >> t;
+    while(t--){
+        u64 num;
+        cin >> num;
+        if (num % 33 == 0){
+            cout << "Yes\n";
+        }else{
+            cout << "No\n";
+        }
+    }
+    return 0;
 }
