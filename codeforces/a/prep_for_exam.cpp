@@ -42,12 +42,23 @@ template <typename T> inline void sort(vector<T>& v){sort(all(v));}
 template <typename T> inline void rsort(vector<T>& v){sort(rall(v));}
 template <typename T> inline void reverse(vector<T>& v){reverse(all(v));}
 
+bool check(int qcnt, int q, const set<int> &answers){
+    // 3 cases to look out for
+    // case 1, answers known is less than number of questions hence 0
+    // case 2, answers known is more than number of questions hence 1
+    // case 3, answers known is same as number of questions hence 1
+    if (qcnt-1 > answers.size()){ return false; }
+    if (qcnt-1 < answers.size()) return true;
+    if (answers.count(q)) return false;
+    return true;
+}
+
 int main ()
 {
     cin.tie(0)->sync_with_stdio(0);
-    freopen("sample.in", "r", stdin);
-    
-    int t, n, m, k;
+    //freopen("sample.in", "r", stdin);
+
+    int t, n, m, k, tmp;
     cin >> t;
 
     while(t--){
@@ -55,12 +66,15 @@ int main ()
         vec<int> ans(m, 0);
 
         vec<int> mList(m);
-        rep(i, m){ 
-            cin >> mList[i]; 
+        set<int> answers;
+        rep(i, m){ cin >> mList[i]; }
+        rep(i, k){ 
+            cin >> tmp;
+            answers.insert(tmp);
         }
 
         rep(i, m){
-            if (true){
+            if (check(n, mList[i], answers)){
                 ans[i] = 1;
             }
         }
