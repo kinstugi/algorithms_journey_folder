@@ -27,6 +27,11 @@ constexpr Canvas life {{
 	{_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,},
 }};
 
+consteval Canvas updateCanvas(Canvas old){
+    Canvas res;
+
+    return res;
+}
 
 int main(){
     return life[0][1];
