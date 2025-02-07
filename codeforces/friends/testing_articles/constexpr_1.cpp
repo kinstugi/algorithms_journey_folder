@@ -29,10 +29,27 @@ constexpr Canvas life {{
 
 consteval Canvas updateCanvas(Canvas old){
     Canvas res;
+	for (int r = 0; r < N; r++){
+		for (int c = 0; c < N; c++){
+			
+			int neighborCount = 0;
+			for (int dr = r-1; dr < r+2; dr++){
+				for (int dc = c-1; dc < c+2; dc++){
+					if (dr == r && dc == c) continue;
+					int wrappedR = (dr + N) % N;
+					int wrappedC = (dc + N) % N;
 
+					neighborCount += static_cast<int>(old[wrappedR][wrappedC]);
+				}
+			}
+			const bool isAlive = old[r][c];
+			res[r][c] = neighborCount == 3 || (isAlive && neighborCount == 2);
+		}
+	}
     return res;
 }
 
 int main(){
-    return life[0][1];
+	constexpr Canvas newLife = updateCanvas(life);
+    return newLife[0][1];
 }
